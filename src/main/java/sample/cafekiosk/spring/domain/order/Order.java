@@ -2,6 +2,7 @@ package sample.cafekiosk.spring.domain.order;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import sample.cafekiosk.spring.domain.BaseTimeEntity;
@@ -33,8 +34,9 @@ public class Order extends BaseTimeEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
-    public Order(List<Product> products, LocalDateTime registeredDateTime){
-        this.orderStatus = OrderStatus.INIT; // order의 초기값이나 등록 시간을 부여해야 하는 test 작성!
+    @Builder
+    private Order(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+        this.orderStatus = orderStatus; // order의 초기값이나 등록 시간을 부여해야 하는 test 작성!
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         this.orderProducts = products.stream()
@@ -42,11 +44,19 @@ public class Order extends BaseTimeEntity {
                 .collect(Collectors.toList());
     }
 
+    public static Order create(List<Product> products, LocalDateTime registeredDateTime){
+        return Order.builder()
+                .orderStatus(OrderStatus.INIT)
+                .products(products)
+                .registeredDateTime(registeredDateTime)
+                .build();
+    }
+
     private static int calculateTotalPrice(List<Product> products) {
         return products.stream().mapToInt(Product::getPrice).sum();
     }
 
-    public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
-        return new Order(products, registeredDateTime);
-    }
+//    public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
+//        return new Order(products, registeredDateTime);
+//    }
 }
