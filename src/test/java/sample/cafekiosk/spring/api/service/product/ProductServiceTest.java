@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
+import sample.cafekiosk.spring.api.service.product.request.ProductCreateServiceRequest;
 import sample.cafekiosk.spring.domain.product.Product;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
 import sample.cafekiosk.spring.domain.product.ProductSellingStatus;
 import sample.cafekiosk.spring.domain.product.ProductType;
-import sample.cafekiosk.spring.domain.product.response.ProductResponse;
-
 import java.util.List;
+import sample.cafekiosk.spring.api.service.product.response.ProductResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -49,8 +49,11 @@ class ProductServiceTest {
                 .price(5000)
                 .build();
 
+        // ProductCreateRequest -> ProductCreateServiceRequest로 변환
+        ProductCreateServiceRequest serviceRequest = request.toServiceRequest();
+
         // when
-        ProductResponse productResponse = productService.createProduct(request);
+        ProductResponse productResponse = productService.createProduct(serviceRequest);
 
         // then
         assertThat(productResponse)
@@ -78,8 +81,11 @@ class ProductServiceTest {
                 .price(5000)
                 .build();
 
+        // ProductCreateRequest -> ProductCreateServiceRequest로 변환
+        ProductCreateServiceRequest serviceRequest = request.toServiceRequest();
+
         // when
-        ProductResponse productResponse = productService.createProduct(request);
+        ProductResponse productResponse = productService.createProduct(serviceRequest);
 
         // then
         assertThat(productResponse)

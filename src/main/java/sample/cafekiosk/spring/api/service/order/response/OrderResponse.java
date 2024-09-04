@@ -6,10 +6,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import lombok.Builder;
 import lombok.Getter;
+import sample.cafekiosk.spring.api.service.product.response.ProductResponse;
 import sample.cafekiosk.spring.domain.order.Order;
-import sample.cafekiosk.spring.domain.order.OrderStatus;
-import sample.cafekiosk.spring.domain.orderproduct.OrderProduct;
-import sample.cafekiosk.spring.domain.product.response.ProductResponse;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
