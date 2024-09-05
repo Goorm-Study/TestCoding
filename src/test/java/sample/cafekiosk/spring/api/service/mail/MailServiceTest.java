@@ -29,18 +29,18 @@ class MailServiceTest {
 
     @DisplayName("메일 전송 테스트")
     @Test
-    void sendMail(){
-     //given
-//        when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
-//                .thenReturn(true);
+    void sendMail() {
+        //given
+        //        when(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
+        //                .thenReturn(true);
         BDDMockito.given(mailSendClient.sendEmail(any(String.class), any(String.class), any(String.class), any(String.class)))
                 .willReturn(true);
-//        doReturn(true)
-//                .when(mailSendClient)
-//                .sendEmail(anyString(), anyString(), anyString(), anyString());
+        //        doReturn(true)
+        //                .when(mailSendClient)
+        //                .sendEmail(anyString(), anyString(), anyString(), anyString());
 
-     //when
-        boolean result = mailService.sendMail("","","","");
+        //when
+        boolean result = mailService.sendMail("", "", "", "");
 
         //then
         Mockito.verify(mailSendHistoryRepository, times(1)).save(any(MailSendHistory.class));
