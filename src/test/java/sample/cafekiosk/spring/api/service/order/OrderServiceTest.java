@@ -182,7 +182,7 @@ class OrderServiceTest {
 
         Stock stock1 = Stock.create("001", 2);
         Stock stock2 = Stock.create("002", 2);
-        stock1.deductQuantity(1); // todo
+        stock1.deductQuantity(1); // todo createOrder 테스트를 하고 있는 중인데, deductQuantity라는 행위를 끌어다 쓰는 중. 두 가지 케이스가 혼합되어있음
         stockRepository.saveAll(List.of(stock1, stock2));
 
         OrderCreateRequest request = OrderCreateRequest.builder()
