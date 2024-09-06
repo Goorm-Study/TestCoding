@@ -49,7 +49,9 @@ class OrderTest {
     @Test
     void registeredDateTime() {
         //given
-        LocalDateTime registeredDateTime = LocalDateTime.now();
+        //LocalDateTime registeredDateTime = LocalDateTime.now(); 고정된 시간으로 테스트하자. 완벽하게 제어하기
+        LocalDateTime registeredDateTime = LocalDateTime.of(2023,1,17,10,0);
+
 
         List<Product> products = List.of(
                 createProduct("001", 1000),
