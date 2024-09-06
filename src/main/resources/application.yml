@@ -48,3 +48,8 @@ spring:
   sql:
     init:
       mode: never
+
+logging:
+  level:
+    root: INFO
+    sample.cafekiosk.spring.client.mail: DEBUG
