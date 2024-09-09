@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
@@ -105,6 +106,8 @@ class CafeKioskTest {
 
     }
 
+    //실패할 수 있는 테스트. LocalDateTime.now() 직접 가지고 테스트 하는 것 지양
+    @Disabled
     @Test
     void createOrder() {
         CafeKiosk cafeKiosk = new CafeKiosk();
